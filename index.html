@@ -11,21 +11,25 @@
 </head>
 
 <body>
-
-    <header class="topo">
-        <img class='uol' src="imagens/logo.png" width="75" height="53">
-        <img class='boneco' src="imagens/boneco.png" width="42" height="31">
-    </header>
-    <main class="conteudo">
-
-
-    </main>
-    <div class="base">
-        <input type="text" placeholder="Escreva aqui...">
-        <button onclick="enviar(this)">
-            <img class='boneco' src="imagens/boneco.png" width="42" height="31">
-        </button>
+    <div class="telaentrada">
+        <img src="imagens/logoentrada.png" alt="" width="130" height="92">
+        <input class="mensagem" type="text" placeholder="Digite seu nome">
+        <button onclick="pegarNome()"> Entrar</button>
     </div>
+    <section>
+        <header class="topo">
+            <img class='uol' src="imagens/logo.png" width="75" height="53">
+            <img class='boneco' src="imagens/boneco.png" width="42" height="31">
+        </header>
+        <main class="conteudo">
+        </main>
+        <div class="base">
+            <input class="enviar" type="text" placeholder="Escreva aqui...">
+            <button onclick="enviar()">
+                <img class='boneco' src="imagens/enviar.png" width="26" height="26">
+            </button>
+        </div>
+    </section>
 
 
 
@@ -33,8 +37,7 @@
 
 
 
-
-
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
 </body>
 
