@@ -6,6 +6,7 @@ let nome;
 let participantes
 let status;
 let envio;
+let msg = document.querySelector('.enviar')
 function pegarNome() {
     message = window.document.querySelector('.mensagem')
     nome = message.value
@@ -56,7 +57,6 @@ function pegarMensagens() {
 
 function EntrarNaSala(resposta) {
     
-    // console.log(resposta.data)
     conteudo = document.querySelector('.conteudo')
     conteudo.innerHTML = ''
     for (let i = 0; i < resposta.data.length; i++) {
@@ -86,13 +86,16 @@ function EntrarNaSala(resposta) {
 
     ultimamsg = document.querySelectorAll('time')
     ultimamsg[99].scrollIntoView()
-
+    // msg.addEventListener('keydown', e => {
+    //     if (e.keyCode===13){
+    //         enviar()
+    //     }
+    // })
 
 }
 
 
 function enviar() {
-    let msg = document.querySelector('.enviar')
     envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
         from: nome,
         to: "Todos",
