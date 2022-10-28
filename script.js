@@ -5,6 +5,7 @@ const body = window.document.querySelector('body');
 let nome;
 let participantes
 let status;
+let envio;
 function pegarNome() {
     message = window.document.querySelector('.mensagem')
     nome = message.value
@@ -32,6 +33,7 @@ function UsuariOnline() {
     online = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', { name: nome });
 
 
+
 }
 
 
@@ -53,7 +55,7 @@ function pegarMensagens() {
 }
 
 function EntrarNaSala(resposta) {
-
+    
     // console.log(resposta.data)
     conteudo = document.querySelector('.conteudo')
     conteudo.innerHTML = ''
@@ -61,9 +63,25 @@ function EntrarNaSala(resposta) {
         tempo = resposta.data[i].time
         usuario = resposta.data[i].from
         texto = resposta.data[i].text
-        conteudo.innerHTML += `<div>
-        <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong><h1>${texto}</h1>
-    </div>`
+        colega = resposta.data[i].to
+        tipo = resposta.data[i].type
+        console.log(colega)
+
+        if (colega !== "Todos") {
+            conteudo.innerHTML += `<div class='privado'>
+                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong><h1>${texto}</h1>
+            </div>`
+        }
+        else if (tipo === 'status') {
+            conteudo.innerHTML += `<div class='status'>
+                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong><h1>${texto}</h1>
+            </div>`
+        }
+        else if(tipo === 'message')
+        conteudo.innerHTML += `<div class='normal'>
+            <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong><h1>${texto}</h1>
+        </div>`
+
 
     }
 
@@ -73,3 +91,14 @@ function EntrarNaSala(resposta) {
 
 }
 
+
+function enviar() {
+    let texto = document.querySelector('.enviar').value
+    const envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
+        from: nome,
+        to: "Todos",
+        text: texto,
+        type: "message"
+    });
+    texto = ""
+}
