@@ -124,7 +124,7 @@ button:hover {
 main div{
     width: 100%;
     border-radius: 2px;
-    height: 40px;
+    min-height: 40px;
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;

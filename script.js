@@ -65,7 +65,6 @@ function EntrarNaSala(resposta) {
         texto = resposta.data[i].text
         colega = resposta.data[i].to
         tipo = resposta.data[i].type
-        console.log(colega)
 
         if (colega !== "Todos") {
             conteudo.innerHTML += `<div class='privado'>
@@ -93,12 +92,12 @@ function EntrarNaSala(resposta) {
 
 
 function enviar() {
-    let texto = document.querySelector('.enviar').value
-    const envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
+    let msg = document.querySelector('.enviar')
+    envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
         from: nome,
         to: "Todos",
-        text: texto,
+        text: msg.value,
         type: "message"
     });
-    texto = ""
+    msg.value = '';
 }
