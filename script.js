@@ -1,5 +1,5 @@
 const telaentrada = window.document.querySelector('.telaentrada');
-const section = window.document.querySelector('section');
+let section = window.document.querySelector('section');
 const body = window.document.querySelector('body');
 
 let nome;
@@ -85,7 +85,7 @@ function EntrarNaSala(resposta) {
     }
 
     ultimamsg = document.querySelectorAll('time')
-    ultimamsg[99].scrollIntoView()
+    ultimamsg[ultimamsg.length-1].scrollIntoView({behavior:"smooth"})
     // msg.addEventListener('keydown', e => {
     //     if (e.keyCode===13){
     //         enviar()
@@ -104,3 +104,29 @@ function enviar() {
     });
     msg.value = '';
 }
+
+// const part = document.querySelector(".participantes")
+// function TelaParticipantes(){
+//     console.log(part)
+//     console.log(section)
+//     part.style.display="block"
+//     // document.querySelector("section").style.background="rgba(10,23,55,0.5);"
+    
+//     // section.addEventListener('click', esconder)
+
+//     // section.onclick = function esconder(){
+//     //     section.style.display="none"
+//     // }
+
+//     pessoas = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
+//     pessoas.then(Verificar)
+
+// }
+
+// function Verificar(teste){
+//     console.log(teste.data)
+// }
+
+// function esconder(){
+//     part.style.display="none"
+// }

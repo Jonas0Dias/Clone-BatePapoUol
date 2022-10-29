@@ -16,14 +16,14 @@
         <input class="mensagem" type="text" placeholder="Digite seu nome">
         <button onclick="pegarNome()"> Entrar</button>
     </div>
-    <section>
+    <section >
         <header class="topo">
             <img class='uol' src="imagens/logo.png" width="75" height="53">
-            <img class='boneco' src="imagens/boneco.png" width="42" height="31">
+            <img class='boneco' onclick='TelaParticipantes()' src="imagens/boneco.png" width="42" height="31">
         </header>
         <main class="conteudo">
-            
-            
+
+
         </main>
         <div class="base">
             <input class="enviar" type="text" placeholder="Escreva aqui...">
@@ -32,6 +32,19 @@
             </button>
         </div>
     </section>
+    <div class="participantes">
+        <div class="msg">
+            Escolha um contato<br>para enviar mensagem:
+        </div>
+        <div class="todos">
+
+            <ion-icon name="people-outline"></ion-icon>
+            <p>Todos</p>
+        </div>
+        <div class="usuarios">
+            <ion-icon name="people-outline"></ion-icon>
+        </div>
+    </div>
 
 
 
@@ -41,6 +54,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="script.js"></script>
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 </body>
 
 </html>

@@ -7,7 +7,7 @@
     background-color: white;
     position: fixed;
     top: 0;
-    z-index: 1;
+    /* z-index: 1; */
 
 }
 
@@ -63,10 +63,7 @@ body {
     margin-top: 80px;
     width: 100%;
     height: 100%;
-    background-color:#E5E5E5
-
-
-
+    background-color: #E5E5E5
 }
 
 .boneco {
@@ -81,11 +78,10 @@ body {
 
 section {
     display: none;
+    position: relative;
 }
 
-main div{
-    
-}
+main div {}
 
 .base {
     width: 100%;
@@ -118,7 +114,8 @@ input:focus {
 
 .mensagem:focus::-webkit-input-placeholder {
     color: transparent;
- }
+}
+
 button {
     background-color: white;
     border: 0px;
@@ -129,7 +126,7 @@ button:hover {
     scale: 0.93;
 }
 
-main div{
+main div {
     width: 100%;
     border-radius: 2px;
     min-height: 40px;
@@ -143,29 +140,69 @@ main div{
     margin-top: 4px;
     word-wrap: break-word
 }
+
 .status {
     background-color: #DCDCDC;
-    
+
 
 }
-.privado{
+
+.privado {
     background-color: #FFDEDE;
-    
+
 }
 
-.normal{
+.normal {
     background-color: white;
-    
+
 }
 
-strong{
+strong {
     font-weight: 900;
 }
 
 
-.base button{
+.base button {
     transition: scale linear 0.5s;
 }
-.base button:active{
-    scale:0.70;
+
+.base button:active {
+    scale: 0.70;
 }
+
+.participantes {
+    width: 70%;
+    min-height: 100%;
+    background-color: rgb(254, 255, 255);
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: none;
+}
+
+.msg{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: aqua;
+    padding: 15px 7px;
+}
+
+.todos{
+    padding: 0px 25px;
+    display: flex;
+}
+
+.todos p{
+    margin-left:8px ;
+}
+.usuarios{
+    padding: 0px 25px;
+}
+
