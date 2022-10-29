@@ -105,28 +105,49 @@ function enviar() {
     msg.value = '';
 }
 
-// const part = document.querySelector(".participantes")
-// function TelaParticipantes(){
-//     console.log(part)
-//     console.log(section)
-//     part.style.display="block"
+const part = document.querySelector(".participantes")
+const escondida = document.querySelector('.escondida')
+function TelaParticipantes(){
+    
+    escondida.style.display="block"
+    // console.log(part)
+    // console.log(section)
+    part.style.display="block"
 //     // document.querySelector("section").style.background="rgba(10,23,55,0.5);"
     
 //     // section.addEventListener('click', esconder)
+    
+    // escondida.onclick = esconder()
+    //     section.style.display="none"
+        // part.style.display="none"
+        // alert('ok')
+    
 
-//     // section.onclick = function esconder(){
-//     //     section.style.display="none"
-//     // }
+    pessoas = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
+    pessoas.then(Verificar)
 
-//     pessoas = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
-//     pessoas.then(Verificar)
+}
 
-// }
+function Verificar(teste){
+    console.log(teste.data[0].name)
+    people = document.querySelector('.usuarios')
+    console.log(pessoas.innerHTML)
+    for (let i = 0; i < teste.data.length; i++){
+        people.innerHTML += `<div class='usuario'><ion-icon class='people' name="person-circle-outline"></ion-icon>
+        <p>${teste.data[i].name}</p><ion-icon class='check' name="checkmark-outline"></ion-icon></div>`
+    }
 
-// function Verificar(teste){
-//     console.log(teste.data)
-// }
+}
 
-// function esconder(){
-//     part.style.display="none"
-// }
+function esconder(){
+    part.style.display="none"
+    escondida.style.display="none"
+    console.log('teste')
+    people.innerHTML=''
+
+}
+
+function HabilitarCheck(){
+    elemento = document.querySelector('.lock .check')
+    elemento.style.display="block"
+}

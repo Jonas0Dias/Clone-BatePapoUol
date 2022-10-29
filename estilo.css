@@ -178,9 +178,20 @@ strong {
     top: 0;
     right: 0;
     display: none;
+    transition: all linear 2000ms;
 }
 
-.msg{
+.escondida {
+    width: 30%;
+    min-height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.msg {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
@@ -190,19 +201,92 @@ strong {
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: aqua;
+    /* background-color: aqua; */
     padding: 15px 7px;
 }
 
-.todos{
+.todos {
     padding: 0px 25px;
     display: flex;
+    justify-items: center;
+    align-items: center;
 }
 
-.todos p{
-    margin-left:8px ;
+.todos p {
+    margin-left: 8px;
 }
-.usuarios{
+
+.usuarios {
     padding: 0px 25px;
 }
 
+.usuario {
+    display: flex;
+    margin-top: 5px;
+}
+
+.usuario p {
+    margin-right: 10px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+.people {
+    width: 21px;
+    height: 21px;
+    color: white;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.todes {
+    width: 23px;
+    height: 23px;
+}
+
+.participantes p {
+    margin-left: 5px;
+    
+}
+
+.check {
+    color: green;
+    display: none;
+    position: absolute;
+    right: 20px;
+}
+
+.todes{
+    color: black;
+}
+
+.lock{
+    margin-left: 25px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.lock ion-icon { 
+    zoom: 1.2;
+ }
+   
+
+
+.lock p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    
+
+    color: #000000;
+}

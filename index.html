@@ -38,14 +38,30 @@
         </div>
         <div class="todos">
 
-            <ion-icon name="people-outline"></ion-icon>
+            <ion-icon class='todes' name="people-outline"></ion-icon>
             <p>Todos</p>
         </div>
         <div class="usuarios">
-            <ion-icon name="people-outline"></ion-icon>
+            
         </div>
-    </div>
+        <div class="msg">
+            Escolha a visibilidade:
+        </div>
+        <div class="lock" onclick="HabilitarCheck(this)">
+            <ion-icon  name="lock-open-outline"></ion-icon>
+            <p>Público</p>
+            <ion-icon class='check' name="checkmark-outline"></ion-icon>
+        </div>
+        <div class="lock" onclick="HabilitarCheck(this)">
+            <ion-icon  name="lock-closed-outline"></ion-icon>
+            <p>Reservadamente</p>
+            <ion-icon class='check' name="checkmark-outline"></ion-icon>
+        </div>
 
+    </div>
+    <div class="escondida" onclick="esconder()">
+
+    </div>
 
 
 
