@@ -2,6 +2,25 @@ const telaentrada = window.document.querySelector('.telaentrada');
 let section = window.document.querySelector('section');
 const body = window.document.querySelector('body');
 
+
+
+document.addEventListener('keydown', e => {
+    if (e.key==="Enter"){
+        axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
+    from: nome,
+    to: "Todos",
+    text: msg.value,
+    type: "message"
+})
+    msg.value = '';
+    }
+})
+
+
+
+
+
+
 let nome;
 let participantes
 let status;
@@ -66,7 +85,8 @@ function EntrarNaSala(resposta) {
         colega = resposta.data[i].to
         tipo = resposta.data[i].type
 
-        if (colega !== "Todos") {
+        if (colega !== "Todos" && colega=== nome) {
+            console.log(colega)
             conteudo.innerHTML += `<div class='privado'>
                 <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong><h1>${texto}</h1>
             </div>`
@@ -86,12 +106,7 @@ function EntrarNaSala(resposta) {
 
     ultimamsg = document.querySelectorAll('time')
     ultimamsg[ultimamsg.length-1].scrollIntoView({behavior:"smooth"})
-    // msg.addEventListener('keydown', e => {
-    //     if (e.keyCode===13){
-    //         enviar()
-    //     }
-    // })
-
+    
 }
 
 
@@ -103,6 +118,20 @@ function enviar() {
         type: "message"
     });
     msg.value = '';
+
+    // document.addEventListener('keydown', e => {
+    //     if (e.key==="Enter"){
+    //         axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
+    //     from: nome,
+    //     to: "Todos",
+    //     text: msg.value,
+    //     type: "message"
+    // })
+    //     }
+    //     msg.value = '';
+    // })
+    
+
 }
 
 const part = document.querySelector(".participantes")
@@ -123,31 +152,56 @@ function TelaParticipantes(){
         // alert('ok')
     
 
-    pessoas = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
+    let pessoas = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
     pessoas.then(Verificar)
+    console.log('teste telaparticipantes')
 
 }
 
 function Verificar(teste){
-    console.log(teste.data[0].name)
+    console.log(teste.data)
     people = document.querySelector('.usuarios')
-    console.log(pessoas.innerHTML)
     for (let i = 0; i < teste.data.length; i++){
-        people.innerHTML += `<div class='usuario'><ion-icon class='people' name="person-circle-outline"></ion-icon>
+        people.innerHTML += `<div class='usuario' onclick='testando(this)'><ion-icon class='people' name="person-circle-outline"></ion-icon>
         <p>${teste.data[i].name}</p><ion-icon class='check' name="checkmark-outline"></ion-icon></div>`
     }
-
 }
 
 function esconder(){
     part.style.display="none"
     escondida.style.display="none"
-    console.log('teste')
     people.innerHTML=''
 
 }
 
-function HabilitarCheck(){
-    elemento = document.querySelector('.lock .check')
-    elemento.style.display="block"
+function HabilitarCheck(esse){
+    esse.children[2].classList.toggle('checkon')
+        
+
+    // esse.children[2].style.display="block"
+    // elemento = document.querySelector('.lock .check')
+    // console.log(elemento)
+    // if elemento.style.display==="block"{
+    //     elemento.style.display="none"
+    // }
+    // else{
+    //     elemento.style.display="block"
+    // }
+}
+let player;
+function testando(user){
+    console.log(user.parentNode.children)
+    // console.log(user.parentNode.children[3].children[2].classList.contains('checkon'))
+    // user.children[2].classList.add('checkon')
+    for (let i=0; i<user.parentNode.children.length;i++){
+        if (user.parentNode.children[i].children[2].classList.contains('checkon') &&  user.children[2].classList.contains('checkon')) {
+            console.log('teste entrando no if')
+            user.children[2].classList.remove('checkon')
+        }
+        else{
+            console.log('teste entrando no else')
+            user.children[2].classList.add('checkon')
+        }
+    }
+    // user.children[2].classList.toggle('checkon')
 }

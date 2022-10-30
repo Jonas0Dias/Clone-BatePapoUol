@@ -263,6 +263,10 @@ strong {
     right: 20px;
 }
 
+.checkon{
+    display: block;
+}
+
 .todes{
     color: black;
 }
