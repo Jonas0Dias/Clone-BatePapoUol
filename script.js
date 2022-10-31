@@ -80,14 +80,14 @@ function EntrarNaSala(resposta) {
         if (tipo === 'private_message' && usuario === nome){
             // console.log(colega)
             conteudo.innerHTML += `<div class='privado'>
-                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong>reservadamente para ${colega}:&nbsp<h1>${texto}</h1>
+                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong>reservadamente para <strong>&nbsp${colega}</strong>:&nbsp<h1>${texto}</h1>
             </div>`
         }
 
         if (tipo === 'private_message' && colega === nome){
             // console.log(colega)
             conteudo.innerHTML += `<div class='privado'>
-                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong>reservadamente para ${colega}:&nbsp<h1>${texto}</h1>
+                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong>reservadamente para <strong>&nbsp${colega}</strong>:<h1>&nbsp${texto}</h1>
             </div>`
         }
         else if (tipo === 'status') {
@@ -97,13 +97,13 @@ function EntrarNaSala(resposta) {
         }
         else if(tipo === 'message' && colega==='Todos'){
         conteudo.innerHTML += `<div class='normal'>
-            <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong> para Todos:&nbsp<h1>${texto}</h1>
+            <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong> para <strong>&nbspTodos</strong>: <h1>&nbsp${texto}</h1>
         </div>`
         }
 
         else if(tipo === 'message' && colega!=="Todos"){
             conteudo.innerHTML += `<div class='normal'>
-                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong> para ${colega}:&nbsp<h1>${texto}</h1>
+                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong> para <strong>&nbsp${colega}</strong>:&nbsp<h1>&nbsp${texto}</h1>
             </div>`
             }
 
@@ -193,6 +193,7 @@ function enviar() {
 const part = document.querySelector(".participantes")
 const escondida = document.querySelector('.escondida')
 function TelaParticipantes(){
+    // section.style.overflow="hidden"
     obs.innerHTML=''
     escondida.style.display="block"
     // console.log(part)
@@ -210,7 +211,7 @@ function TelaParticipantes(){
 
     let pessoas = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
     pessoas.then(Verificar)
-    console.log('teste telaparticipantes')
+    // console.log('teste telaparticipantes')
 
 }
 
@@ -227,6 +228,7 @@ let obs = document.querySelector('.obs')
 function esconder(){
     part.style.display="none"
     escondida.style.display="none"
+    // section.style.overflow="auto"
    
 
     if( mensageiro===undefined && destino ===undefined){
@@ -259,7 +261,7 @@ function HabilitarCheck(esse){
             privacidade[1].children[2].classList.remove('checkon')
         }
     mensageiro = esse.innerText
-    console.log(mensageiro)
+    // console.log(mensageiro)
    
     // console.log(privacidade[0],privacidade[1])
 
@@ -293,7 +295,7 @@ function testando(user){
             user.parentNode.children[i].children[2].classList.remove('checkon')
         }
         destino = user.innerText
-        console.log(destino)
+        // console.log(destino)
     // console.log(ListaParticipantes)
     // console.log((indexOf(user)))
     // console.log(user.parentNode.children[3].children[2].classList.contains('checkon'))

@@ -71,6 +71,11 @@ body {
 
 }
 
+.boneco:hover{
+    cursor: pointer;
+    scale: 0.93;
+}
+
 .uol {
     margin-left: 16px;
 
@@ -79,6 +84,7 @@ body {
 section {
     display: none;
     position: relative;
+    /* overflow: ; */
 }
 
 main div {}
@@ -124,6 +130,7 @@ button {
 
 button:hover {
     scale: 0.93;
+    cursor: pointer;
 }
 
 main div {
@@ -138,23 +145,26 @@ main div {
     display: flex;
     align-items: center;
     margin-top: 4px;
-    word-wrap: break-word
 }
 
 .status {
     background-color: #DCDCDC;
+    /* word-break: break-all; */
 
 
 }
 
+h1{
+    word-break: break-all;
+}
 .privado {
     background-color: #FFDEDE;
-
+    /* word-break: break-all; */
 }
 
 .normal {
     background-color: white;
-
+    /* word-break: break-all; */
 }
 
 strong {
@@ -172,14 +182,14 @@ strong {
 
 .participantes {
     width: 70%;
-    min-height: 100%;
+    height: 100%;
     background-color: rgb(254, 255, 255);
     position: fixed;
     top: 0;
     right: 0;
     display: none;
     transition: all linear 2000ms;
-    overflow:auto; 
+    overflow-y:scroll; 
 }
 
 .escondida {
