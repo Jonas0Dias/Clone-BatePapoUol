@@ -2,24 +2,16 @@ const telaentrada = window.document.querySelector('.telaentrada');
 let section = window.document.querySelector('section');
 const body = window.document.querySelector('body');
 
-
-
 document.addEventListener('keydown', e => {
     if (e.key==="Enter"){
-        axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
-    from: nome,
-    to: "Todos",
-    text: msg.value,
-    type: "message"
-})
-    msg.value = '';
-    }
-})
+      enviar();
+}})
 
 
 
 
-
+let privacidade = document.querySelectorAll('.lock')
+let mensageiro;
 let destino;
 let nome;
 let participantes
@@ -75,20 +67,27 @@ function pegarMensagens() {
 }
 
 function EntrarNaSala(resposta) {
-    
+    // console.log(resposta)
     conteudo = document.querySelector('.conteudo')
     conteudo.innerHTML = ''
     for (let i = 0; i < resposta.data.length; i++) {
-        tempo = resposta.data[i].time
-        usuario = resposta.data[i].from
-        texto = resposta.data[i].text
-        colega = resposta.data[i].to
-        tipo = resposta.data[i].type
+        let tempo = resposta.data[i].time
+        let usuario = resposta.data[i].from
+        let texto = resposta.data[i].text
+        let colega = resposta.data[i].to
+        let tipo = resposta.data[i].type
 
-        if (colega !== "Todos" && colega=== nome) {
-            console.log(colega)
+        if (tipo === 'private_message' && usuario === nome){
+            // console.log(colega)
             conteudo.innerHTML += `<div class='privado'>
-                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong><h1>${texto}</h1>
+                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong>reservadamente para ${colega}:&nbsp<h1>${texto}</h1>
+            </div>`
+        }
+
+        if (tipo === 'private_message' && colega === nome){
+            // console.log(colega)
+            conteudo.innerHTML += `<div class='privado'>
+                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong>reservadamente para ${colega}:&nbsp<h1>${texto}</h1>
             </div>`
         }
         else if (tipo === 'status') {
@@ -96,14 +95,20 @@ function EntrarNaSala(resposta) {
                 <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong><h1>${texto}</h1>
             </div>`
         }
-        else if(tipo === 'message')
+        else if(tipo === 'message' && colega==='Todos'){
         conteudo.innerHTML += `<div class='normal'>
-            <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong><h1>${texto}</h1>
+            <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong> para Todos:&nbsp<h1>${texto}</h1>
         </div>`
+        }
 
+        else if(tipo === 'message' && colega!=="Todos"){
+            conteudo.innerHTML += `<div class='normal'>
+                <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong> para ${colega}:&nbsp<h1>${texto}</h1>
+            </div>`
+            }
 
     }
-
+    // privacidade[0].children[2].classList.add('checkon')
     ultimamsg = document.querySelectorAll('time')
     ultimamsg[ultimamsg.length-1].scrollIntoView({behavior:"smooth"})
     
@@ -115,12 +120,59 @@ function EntrarNaSala(resposta) {
 
 
 function enviar() {
-    envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
+    if(mensageiro === undefined && destino===undefined){
+        // alert('Entoru no 1')
+        envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
         from: nome,
         to: "Todos",
         text: msg.value,
         type: "message"
-    });
+    })
+    }   
+
+    else if(mensageiro === 'Público' && destino===undefined){
+        // alert('Entoru no 2')
+        envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
+        from: nome,
+        to: "Todos",
+        text: msg.value,
+        type: "message"
+    })
+    } 
+
+    else if(mensageiro === 'Público' && destino!==undefined){
+        // alert('Entoru no 3')
+        envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
+        from: nome,
+        to: destino,
+        text: msg.value,
+        type: "message"
+    })
+    }  
+    
+    else if(mensageiro ==='Reservadamente' && destino!== undefined){
+        // alert('Entoru no 4')
+        envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
+        from: nome,
+        to: destino,
+        text: msg.value,
+        type: "private_message"
+    })
+    }
+    else if(mensageiro ==='Reservadamente' && destino === undefined){
+        alert('Por favor, selecione para quem quer enviar sua mensagem')
+    }
+
+    else if(mensageiro === undefined && destino!==undefined) {
+        // alert('Entoru no 6')
+        envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
+        from: nome,
+        to: destino,
+        text: msg.value,
+        type: "message"
+    })
+    }
+    
     msg.value = '';
 
     // document.addEventListener('keydown', e => {
@@ -165,6 +217,7 @@ function TelaParticipantes(){
 function Verificar(teste){
     // console.log(teste.data)
     people = document.querySelector('.usuarios')
+    people.innerHTML="<div class='todos' onclick='testando(this)'><ion-icon class='todes' name='people-outline'></ion-icon><p>Todos</p><ion-icon class='check' name='checkmark-outline'></ion-icon></div>"
     for (let i = 0; i < teste.data.length; i++){
         people.innerHTML += `<div class='usuario' onclick='testando(this)'><ion-icon class='people' name="person-circle-outline"></ion-icon>
         <p>${teste.data[i].name}</p><ion-icon class='check' name="checkmark-outline"></ion-icon></div>`
@@ -174,16 +227,30 @@ let obs = document.querySelector('.obs')
 function esconder(){
     part.style.display="none"
     escondida.style.display="none"
-    people.innerHTML="<div class='todos' onclick='testando(this)'><ion-icon class='todes' name='people-outline'></ion-icon><p>Todos</p><ion-icon class='check' name='checkmark-outline'></ion-icon></div>"
+   
 
+    if( mensageiro===undefined && destino ===undefined){
+        obs.innerHTML = `Enviando Público para Todos`
+        obs.style.display="block"
+    }
+
+    else if( mensageiro!==undefined && destino ===undefined){
+        obs.innerHTML = `Enviando Público para Todos`
+        obs.style.display="block"
+    }
     
-    obs.innerHTML = `Enviando ${mensageiro} para ${destino}`
-    obs.style.display="block"
+    else if( mensageiro===undefined && destino !==undefined){
+        obs.innerHTML = `Enviando Público para ${destino}`
+        obs.style.display="block"
+    }
 
+    if( mensageiro!==undefined && destino !==undefined){
+        obs.innerHTML = `Enviando ${mensageiro} para ${destino}`
+        obs.style.display="block"
+    }
 }
-let mensageiro;
+
 function HabilitarCheck(esse){
-    privacidade = document.querySelectorAll('.lock')
     esse.children[2].classList.add('checkon')
         if (privacidade[0] !== esse){
             privacidade[0].children[2].classList.remove('checkon')
