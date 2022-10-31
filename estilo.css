@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 .topo {
     height: 80px;
     min-width: 100%;
@@ -111,6 +113,7 @@ main div {}
     /* background-color: chartreuse; */
     width: calc(100% - 90px);
     margin-left: 30px;
+    /* color: #000000; */
 }
 
 input:focus {
@@ -208,12 +211,14 @@ strong {
     font-family: 'Roboto';
     font-style: italic;
     font-weight: 400;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 25px;
     color: #505050;
     margin-left: 30px;
     /* display: none; */
     margin-bottom: 2px;
+    /* max-width: 50%; */
+    margin-top: 5px;
 }
 
 .msg {
