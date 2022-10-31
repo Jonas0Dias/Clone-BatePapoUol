@@ -27,6 +27,9 @@
         </main>
         <div class="base">
             <input class="enviar" type="text" placeholder="Escreva aqui...">
+            <div class="obs">
+                
+            </div>
             <button onclick="enviar()">
                 <img class='boneco' src="imagens/enviar.png" width="26" height="26">
             </button>
@@ -36,13 +39,14 @@
         <div class="msg">
             Escolha um contato<br>para enviar mensagem:
         </div>
-        <div class="todos">
-
-            <ion-icon class='todes' name="people-outline"></ion-icon>
-            <p>Todos</p>
-        </div>
+        
         <div class="usuarios">
-            
+            <div class="todos" onclick="testando(this)">
+
+                <ion-icon class='todes' name="people-outline"></ion-icon>
+                <p>Todos</p>
+                <ion-icon class='check' name="checkmark-outline"></ion-icon>
+            </div>
         </div>
         <div class="msg">
             Escolha a visibilidade:
@@ -50,7 +54,7 @@
         <div class="lock" onclick="HabilitarCheck(this)">
             <ion-icon  name="lock-open-outline"></ion-icon>
             <p>Público</p>
-            <ion-icon class='check checkon' name="checkmark-outline"></ion-icon>
+            <ion-icon class='check' name="checkmark-outline"></ion-icon>
         </div>
         <div class="lock" onclick="HabilitarCheck(this)">
             <ion-icon  name="lock-closed-outline"></ion-icon>

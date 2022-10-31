@@ -20,7 +20,7 @@ document.addEventListener('keydown', e => {
 
 
 
-
+let destino;
 let nome;
 let participantes
 let status;
@@ -110,6 +110,10 @@ function EntrarNaSala(resposta) {
 }
 
 
+
+
+
+
 function enviar() {
     envio = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', {
         from: nome,
@@ -137,7 +141,7 @@ function enviar() {
 const part = document.querySelector(".participantes")
 const escondida = document.querySelector('.escondida')
 function TelaParticipantes(){
-    
+    obs.innerHTML=''
     escondida.style.display="block"
     // console.log(part)
     // console.log(section)
@@ -159,23 +163,43 @@ function TelaParticipantes(){
 }
 
 function Verificar(teste){
-    console.log(teste.data)
+    // console.log(teste.data)
     people = document.querySelector('.usuarios')
     for (let i = 0; i < teste.data.length; i++){
         people.innerHTML += `<div class='usuario' onclick='testando(this)'><ion-icon class='people' name="person-circle-outline"></ion-icon>
         <p>${teste.data[i].name}</p><ion-icon class='check' name="checkmark-outline"></ion-icon></div>`
     }
 }
-
+let obs = document.querySelector('.obs') 
 function esconder(){
     part.style.display="none"
     escondida.style.display="none"
-    people.innerHTML=''
+    people.innerHTML="<div class='todos' onclick='testando(this)'><ion-icon class='todes' name='people-outline'></ion-icon><p>Todos</p><ion-icon class='check' name='checkmark-outline'></ion-icon></div>"
+
+    
+    obs.innerHTML = `Enviando ${mensageiro} para ${destino}`
+    obs.style.display="block"
 
 }
-
+let mensageiro;
 function HabilitarCheck(esse){
-    esse.children[2].classList.toggle('checkon')
+    privacidade = document.querySelectorAll('.lock')
+    esse.children[2].classList.add('checkon')
+        if (privacidade[0] !== esse){
+            privacidade[0].children[2].classList.remove('checkon')
+        }
+        else if(privacidade[1] !== esse){
+            privacidade[1].children[2].classList.remove('checkon')
+        }
+    mensageiro = esse.innerText
+    console.log(mensageiro)
+   
+    // console.log(privacidade[0],privacidade[1])
+
+    // if (esse.children[2].classList.contains('checkon')){
+    //     esse.children[2].classList.remove('checkon')
+    // }
+    // esse.children[2].classList.toggle('checkon')1
         
 
     // esse.children[2].style.display="block"
@@ -188,20 +212,34 @@ function HabilitarCheck(esse){
     //     elemento.style.display="block"
     // }
 }
-let player;
+
 function testando(user){
-    console.log(user.parentNode.children)
-    // console.log(user.parentNode.children[3].children[2].classList.contains('checkon'))
-    // user.children[2].classList.add('checkon')
-    for (let i=0; i<user.parentNode.children.length;i++){
-        if (user.parentNode.children[i].children[2].classList.contains('checkon') &&  user.children[2].classList.contains('checkon')) {
-            console.log('teste entrando no if')
-            user.children[2].classList.remove('checkon')
+    user.children[2].classList.add('checkon')
+    // document.querySelector('todos')
+    
+    // const ListaParticipantes = user.parentNode.children[0].children[2]
+    for(let i=0; i<user.parentNode.children.length;i++)
+        if(user.parentNode.children[i]==user){
+            // console.log(`O elemento está na posiç~]ao ${i}`)
         }
         else{
-            console.log('teste entrando no else')
-            user.children[2].classList.add('checkon')
+            user.parentNode.children[i].children[2].classList.remove('checkon')
         }
-    }
+        destino = user.innerText
+        console.log(destino)
+    // console.log(ListaParticipantes)
+    // console.log((indexOf(user)))
+    // console.log(user.parentNode.children[3].children[2].classList.contains('checkon'))
+    // user.children[2].classList.add('checkon')
+    // for (let i=0; i<user.parentNode.children.length;i++){
+    //     if (user.parentNode.children[i].children[2].classList.contains('checkon') &&  user.children[2].classList.contains('checkon')) {
+    //         console.log('teste entrando no if')
+    //         user.children[2].classList.remove('checkon')
+    //     }
+    //     else{
+    //         console.log('teste entrando no else')
+    //         user.children[2].classList.add('checkon')
+    //     }
+    // }
     // user.children[2].classList.toggle('checkon')
 }

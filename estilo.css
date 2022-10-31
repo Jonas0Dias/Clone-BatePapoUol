@@ -191,6 +191,20 @@ strong {
     background: rgba(0, 0, 0, 0.6);
 }
 
+.obs {
+    position: absolute;
+    bottom: 0;
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 25px;
+    color: #505050;
+    margin-left: 30px;
+    display: none;
+    margin-bottom: 2px;
+}
+
 .msg {
     font-family: 'Roboto';
     font-style: normal;
@@ -206,7 +220,7 @@ strong {
 }
 
 .todos {
-    padding: 0px 25px;
+    padding: 0px;
     display: flex;
     justify-items: center;
     align-items: center;
@@ -253,7 +267,7 @@ strong {
 
 .participantes p {
     margin-left: 5px;
-    
+
 }
 
 .check {
@@ -263,34 +277,34 @@ strong {
     right: 20px;
 }
 
-.checkon{
+.checkon {
     display: block;
 }
 
-.todes{
+.todes {
     color: black;
 }
 
-.lock{
+.lock {
     margin-left: 25px;
     display: flex;
     align-items: center;
     margin-bottom: 10px;
 }
 
-.lock ion-icon { 
+.lock ion-icon {
     zoom: 1.2;
- }
-   
+}
 
 
-.lock p{
+
+.lock p {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    
+
 
     color: #000000;
 }
