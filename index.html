@@ -13,24 +13,24 @@
 <body>
     <div class="telaentrada">
         <img src="imagens/logoentrada.png" alt="" width="130" height="92">
-        <input class="mensagem" type="text" placeholder="Digite seu nome">
-        <button onclick="pegarNome()"> Entrar</button>
+        <input data-teste='input-name' class="mensagem" type="text" placeholder="Digite seu nome">
+        <button data-teste='send-name' onclick="pegarNome()"> Entrar</button>
     </div>
     <section >
         <header class="topo">
             <img class='uol' src="imagens/logo.png" width="75" height="53">
-            <img class='boneco' onclick='TelaParticipantes()' src="imagens/boneco.png" width="42" height="31">
+            <img class='boneco' data-teste='open-participants' onclick='TelaParticipantes()' src="imagens/boneco.png" width="42" height="31">
         </header>
         <main class="conteudo">
 
 
         </main>
         <div class="base">
-            <input class="enviar" type="text" placeholder="Escreva aqui...">
-            <div class="obs">
+            <input data-teste='input-message' class="enviar" type="text" placeholder="Escreva aqui...">
+            <div class="obs" data-teste='recipient'>
                 Enviando Público para Todos
             </div>
-            <button onclick="enviar()">
+            <button onclick="enviar()" data-teste='send-message'>
                 <img class='boneco' src="imagens/enviar.png" width="26" height="26">
             </button>
         </div>
@@ -41,7 +41,7 @@
         </div>
         
         <div class="usuarios">
-            <div class="todos" onclick="testando(this)">
+            <div  class="todos" onclick="testando(this)">
 
                 <ion-icon class='todes' name="people-outline"></ion-icon>
                 <p>Todos</p>
@@ -51,15 +51,15 @@
         <div class="msg">
             Escolha a visibilidade:
         </div>
-        <div class="lock" onclick="HabilitarCheck(this)">
+        <div class="lock" data-teste='public' onclick="HabilitarCheck(this)">
             <ion-icon  name="lock-open-outline"></ion-icon>
             <p>Público</p>
-            <ion-icon class='check' name="checkmark-outline"></ion-icon>
+            <ion-icon class='check' data-teste='check' name="checkmark-outline"></ion-icon>
         </div>
-        <div class="lock" onclick="HabilitarCheck(this)">
+        <div class="lock" data-teste='private' onclick="HabilitarCheck(this)">
             <ion-icon  name="lock-closed-outline"></ion-icon>
             <p>Reservadamente</p>
-            <ion-icon class='check' name="checkmark-outline"></ion-icon>
+            <ion-icon class='check' data-teste='check'  name="checkmark-outline"></ion-icon>
         </div>
 
     </div>

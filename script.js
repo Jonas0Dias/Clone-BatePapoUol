@@ -79,30 +79,30 @@ function EntrarNaSala(resposta) {
 
         if (tipo === 'private_message' && usuario === nome){
             // console.log(colega)
-            conteudo.innerHTML += `<div class='privado'>
+            conteudo.innerHTML += `<div class='privado' data-teste='message'>
                 <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong>reservadamente para <strong>&nbsp${colega}</strong>:&nbsp<h1>${texto}</h1>
             </div>`
         }
 
         if (tipo === 'private_message' && colega === nome){
             // console.log(colega)
-            conteudo.innerHTML += `<div class='privado'>
+            conteudo.innerHTML += `<div class='privado' data-teste='message'>
                 <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong>reservadamente para <strong>&nbsp${colega}</strong>:<h1>&nbsp${texto}</h1>
             </div>`
         }
         else if (tipo === 'status') {
-            conteudo.innerHTML += `<div class='status'>
+            conteudo.innerHTML += `<div class='status' data-teste='message'>
                 <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong><h1>${texto}</h1>
             </div>`
         }
         else if(tipo === 'message' && colega==='Todos'){
-        conteudo.innerHTML += `<div class='normal'>
+        conteudo.innerHTML += `<div class='normal' data-teste='message'>
             <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong> para <strong>&nbspTodos</strong>: <h1>&nbsp${texto}</h1>
         </div>`
         }
 
         else if(tipo === 'message' && colega!=="Todos"){
-            conteudo.innerHTML += `<div class='normal'>
+            conteudo.innerHTML += `<div class='normal' data-teste='message'>
                 <time>(${tempo})&nbsp </time><strong>${usuario}&nbsp</strong> para <strong>&nbsp${colega}</strong>:&nbsp<h1>&nbsp${texto}</h1>
             </div>`
             }
@@ -218,10 +218,10 @@ function TelaParticipantes(){
 function Verificar(teste){
     // console.log(teste.data)
     people = document.querySelector('.usuarios')
-    people.innerHTML="<div class='todos' onclick='testando(this)'><ion-icon class='todes' name='people-outline'></ion-icon><p>Todos</p><ion-icon class='check' name='checkmark-outline'></ion-icon></div>"
+    people.innerHTML="<div class='todos' data-teste='all' onclick='testando(this)'><ion-icon class='todes' name='people-outline'></ion-icon><p>Todos</p><ion-icon class='check' name='checkmark-outline'></ion-icon></div>"
     for (let i = 0; i < teste.data.length; i++){
-        people.innerHTML += `<div class='usuario' onclick='testando(this)'><ion-icon class='people' name="person-circle-outline"></ion-icon>
-        <p>${teste.data[i].name}</p><ion-icon class='check' name="checkmark-outline"></ion-icon></div>`
+        people.innerHTML += `<div class='usuario' data-teste='participant' onclick='testando(this)'><ion-icon class='people' name="person-circle-outline"></ion-icon>
+        <p>${teste.data[i].name}</p><ion-icon class='check' data-teste='check' name="checkmark-outline"></ion-icon></div>`
     }
 }
 let obs = document.querySelector('.obs') 
